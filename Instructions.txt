@@ -1,0 +1,40 @@
+Dear team,
+
+As you have heard by now, the topic of our retreat is "freak-o-Bayes coding retreat". As a warm-up, everyone should do THIS:
+
+(1) get your brains into simple MCMCs. For example, read
+
+https://en.wikipedia.org/wiki/Metropolis%E2%80%93Hastings_algorithm
+
+(if you are a beginner, start reading with "step-by-step" at the end of the article, and then work your way up)
+
+(2) code a Metropolis Hastings MCMC (in MATLAB, unless you have a strongly different preference) for a simple problem.
+
+
+The simple problem is:
+- model: y=ax+b, "find a, b" (linear simple regression, but Bayesian version)
+- generate some manually/randomly done data pairs (xi,yi) that you can plot as scatter plot
+- define a likelihood for measurement errors, e.g. Gaussian with mean 0 and some measurement error variance (typically smaller than the variance of the y-data)
+- define a prior on the parameters a, b (e.g. independent, Gauss, zero mean, large variance so that a and b can take on values that would fit the data)
+- choose a proposal density (e.g. Gaussian, centered on current values, and a stdev found by trial and error*)
+- generate samples of a,b conditional on the data with your self-written MCMC
+- visualize the history of a,b samples in a 2D "trace plot"
+- visualize the results as a set of, e.g., 100 versions of y=ax+b into the scatter plot
+- plot a scatterplot of a,b; histograms of a and of b
+- compute the "acceptance rate", i.e. the percentage of acceptance steps out of all steps
+- * play with the stdev of the proposal density to recap the problems of "too small steps" versus "too many rejections", and try to manually find a good setting to get the acceptance rate between 25 and 50%.
+
+p.s. it makes sense to define functions (in matlab: either inline functions with @ or separate files) for prior, likelihood, proposal generation, acceptance probability,... because then they are easily isolated, and can be exchanged more easily.
+
+The person who finishes first could share his/her test data set, prior/likelihood assumptions, code and results with the group for intercomparison - so everyone can check whether they are on a good track. You can also see what coding styles seem more or less elegant.
+
+Once done, if you want upgrades for the sports:
+(a) equip your MCMC with nice diagnostic plots (e.g. history of posterior density values, history of likelihood values, history of a, b) that refresh during runtime
+(b) look up "Bayesian linear regression" in Wikipedia and compare your results for (a,b) with the analytical solution
+(c) try to made the likelihood's variance a hyperparameter to be inferred just as well!
+(d) can you think about an adaptive scheme that tunes the proposal distribution on the fly?
+(e) ...
+
+Enjoy :)
+Cheeeeeeeeeeeerio
+Wolfgang
